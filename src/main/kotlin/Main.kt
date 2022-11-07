@@ -22,7 +22,7 @@ fun main(arg: Array<String>) {
             .map { it.toInt() }
         val alreadyExists = arr[ip[0]][ip[1]][ip[2]][ip[3]]
         if (!alreadyExists) {
-            arr[ip[0]][ip[1]][ip[2]][ip[3]] = 1
+            arr[ip[0]][ip[1]][ip[2]][ip[3]] = true
             counter++
         }
         batchCounter++
