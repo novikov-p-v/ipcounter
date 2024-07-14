@@ -10,28 +10,10 @@ import java.util.BitSet
  */
 fun main(arg: Array<String>) {
     val timeStart = System.currentTimeMillis()
-    val arr = Array(256){ Array(256) {Array(256) { BitSet(256)} } }
-    var counter = 0
-    var batchCounter = 0
-    var lineCounter: Long = 0
     if (arg.isEmpty()) {
         println("Не указано имя файла")
     }
-    File(arg[0]).forEachLine { line ->
-        val ip = line.split(".")
-            .map { it.toInt() }
-        val alreadyExists = arr[ip[0]][ip[1]][ip[2]][ip[3]]
-        if (!alreadyExists) {
-            arr[ip[0]][ip[1]][ip[2]][ip[3]] = true
-            counter++
-        }
-        batchCounter++
-        lineCounter++
-        if (batchCounter >= 1000000) {
-            println("Обработано строк: $lineCounter")
-            batchCounter = 0
-        }
-    }
+    val counter = count(File(arg[0]))
     val timeEnd = System.currentTimeMillis()
     println("Время сек: ${(timeEnd - timeStart)/1000}")
     println("Total memory ${Runtime.getRuntime().totalMemory()}")
